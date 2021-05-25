@@ -1,17 +1,16 @@
 package tp;
 
-import java.util.Date;
 
 public class Paciente {
 	private boolean enfermedadPreexistente;
 	private boolean personalSalud;
 	private int dni;
-	private int edad;
+	private Fecha edad;
 	private Fecha fechaTurno;
 	private Vacuna vacuna;
 	private int prioridad;
 
-	public Paciente(int dni, int edad, boolean enfermedadPreexistente, boolean personalSalud) {
+	public Paciente(int dni, Fecha edad, boolean enfermedadPreexistente, boolean personalSalud) {
 		this.dni = dni;
 		this.edad = edad;
 		this.enfermedadPreexistente = enfermedadPreexistente;
@@ -24,7 +23,7 @@ public class Paciente {
 		return this.dni;
 	}
 
-	public int getEdad() {
+	public Fecha getEdad() {
 		return this.edad;
 	}
 
@@ -90,8 +89,27 @@ public class Paciente {
 
 	// comparable <--
 
-	public static void main(String[] args) {
-		Paciente n = new Paciente(45307940, 20, false, false);
-		System.out.println(n.toString());
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + dni;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paciente other = (Paciente) obj;
+		if (dni != other.dni)
+			return false;
+		return true;
 	}
 }

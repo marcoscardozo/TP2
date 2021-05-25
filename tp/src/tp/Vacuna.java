@@ -1,8 +1,7 @@
 package tp;
 
-import java.util.Iterator;
 
-import tp.CentroAlmacenamiento.TipoVacuna;
+
 
 public abstract class Vacuna {
 

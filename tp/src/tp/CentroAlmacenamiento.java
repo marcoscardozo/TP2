@@ -6,37 +6,48 @@ import java.util.Map;
 
 public class CentroAlmacenamiento {
 
-	private ArrayList<Vacuna18> vacunas18;
-	private ArrayList<Vacuna3> vacunas3;
-	public TipoVacuna t;
+	private HashMap<String, ArrayList<Vacuna>> vacunas;
+	private HashMap<String, ArrayList<Vacuna>> vacunasVencidas;
+	
 
 	public CentroAlmacenamiento() {
-		vacunas18 = new ArrayList<Vacuna18>();
-		vacunas3 = new ArrayList<Vacuna3>();
+		vacunas = new HashMap<String, ArrayList<Vacuna>>();
+		vacunas.put("Pfizer", new ArrayList<Vacuna>());
+		vacunas.put("Moderna", new ArrayList<Vacuna>());
+		vacunas.put("Astranezca", new ArrayList<Vacuna>());
+		vacunas.put("Sputnik", new ArrayList<Vacuna>());
+		vacunas.put("Sinopharm", new ArrayList<Vacuna>());
+		
+
 	}
 
-	public void agregarVacunas(String nombre, int cant, Fecha ingreso) {
-		if (nombre.equals("Pfizer") || nombre.equals("Moderna"))
-			for (int i = 0; i < cant; i++)
-				vacunas18.add(new Vacuna18(nombre, ingreso));
-		else if (nombre.equals("Sinopharm") || nombre.equals("Astranezca") || nombre.equals("Sputnik"))
-			for (int i = 0; i < cant; i++)
-				vacunas3.add(new Vacuna3(nombre, ingreso));
-	}
-
-	public int obtenerCantidadDevacunasPorNombre(String nombre) {
-		int vacunas = 0;
+	public void agregarVacunas(String nombre, int cant, Fecha ingreso){//listo
 		if (nombre.equals("Pfizer"))
-			for (Vacuna18 vacuna18 : vacunas18) {
-				if (vacuna18.verNombre().equals("Pfizer"))
-					vacunas += 1;
-			}
-		if (nombre.equals("Moderna"))
-			for (Vacuna18 vacuna181 : vacunas18) {
-				if (vacuna181.verNombre().equals("Moderna"))
-					vacunas += 1;
-			}
-		return vacunas;
+			rellenarVacunas18(nombre, cant, ingreso);
+		else if (nombre.equals("Moderna"))
+			rellenarVacunas18(nombre, cant, ingreso);
+		else if (nombre.equals("Sinopharm"))
+			rellenarVacunas3(nombre, cant, ingreso);
+		else if (nombre.equals("Astranezca"))
+			rellenarVacunas3(nombre, cant, ingreso);
+		else if (nombre.equals("Sputnik"))
+			rellenarVacunas3(nombre, cant, ingreso);
+	}
+	//privados
+	private void rellenarVacunas18(String nombre, int cant, Fecha ing) {
+		for (int i = 0; i < cant; i++) {
+			vacunas.get(nombre).add(new Vacuna18(nombre, ing));
+		}
+	}
+
+	private void rellenarVacunas3(String nombre, int cant, Fecha ing) {
+		for (int i = 0; i < cant; i++) {
+			vacunas.get(nombre).add(new Vacuna3(nombre, ing));
+		}
+	}
+	//privados
+	public int obtenerCantidadDevacunasPorNombre(String nombre) { //listo
+		return vacunas.get(nombre).size();
 	}
 
 	private void descontarVacuna(String nombre) {
@@ -44,29 +55,9 @@ public class CentroAlmacenamiento {
 
 	public String toString() {
 		return null;
-	}//
-
-	// enum--------------------------------------------------------------------------------------------------
-	enum TipoVacuna {
-		PZIFER("pzifer"), SPUTNIK("sputnik"), SINOPHARM("sinopharm"), MODERNA("moderna"), ASTRANEZCA("astranezca");
-// recibe en mayusculas y devuelve lo de adentro, en minuscula.
-
-		private TipoVacuna(String nombre) {
-			this.tipoVacuna = nombre;
-
-		}
-
-		private String tipoVacuna;
-
-		public String getTipoVacuna() {
-			return tipoVacuna;
-		}
 	}
-	// ----------------------------------------------------------------------------------------------------------------
 
 	public static void main(String[] args) {
-//		TipoVacuna tipo = Enum.valueOf(TipoVacuna.class, "MODERNA");
-//		System.out.println(tipo.getTipoVacuna());
 
 	}
 }

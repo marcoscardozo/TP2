@@ -39,7 +39,7 @@ public class Fecha implements Comparable<Fecha> {
 
 	private LocalDate fecha;
 
-	private Fecha() {
+	Fecha() {
 		fecha = LocalDate.now();
 	}
 
@@ -102,10 +102,18 @@ public class Fecha implements Comparable<Fecha> {
 	}
 	
 	@Override
+	public String toString() {
+		return "Fecha [fecha=" + fecha + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		return fecha == null ? 0 : fecha.hashCode();
 	}
-	
+	public static void main(String[] args) {
+		Fecha f = new Fecha();
+		System.out.println(Fecha.diferenciaAnios(f, new Fecha(9,05,2001)));
+	}
 	
 
 }
