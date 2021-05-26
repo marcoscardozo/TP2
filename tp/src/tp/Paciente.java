@@ -7,14 +7,16 @@ public class Paciente {
 	private int dni;
 	private Fecha edad;
 	private Fecha fechaTurno;
-	private Vacuna vacuna;
+	private String vacuna;
 	private int prioridad;
+	protected boolean vacunado;
 
 	public Paciente(int dni, Fecha edad, boolean enfermedadPreexistente, boolean personalSalud) {
 		this.dni = dni;
 		this.edad = edad;
 		this.enfermedadPreexistente = enfermedadPreexistente;
 		this.personalSalud = personalSalud;
+		this.vacunado = false;
 	}
 
 // Informacion personal del Paciente----------------------------------//
@@ -70,8 +72,8 @@ public class Paciente {
 		return true;
 	}
 
-	public boolean asignarVacuna(Vacuna v) {
-		return true;
+	public void asignarVacuna(String v) {
+		this.vacuna = v;
 	}
 
 	@Override

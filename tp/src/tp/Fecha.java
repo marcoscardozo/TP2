@@ -28,8 +28,8 @@ public class Fecha implements Comparable<Fecha> {
 	}
 
 	/**
-	 * Definir que el dia actual es una fecha en particular. 
-	 * Permite simular que se está en un dia específico.
+	 * Definir que el dia actual es una fecha en particular. Permite simular que se
+	 * está en un dia específico.
 	 */
 	public static void setFechaHoy(int dia, int mes, int anio) {
 		hoy = new Fecha(dia, mes, anio);
@@ -68,6 +68,11 @@ public class Fecha implements Comparable<Fecha> {
 		return periodo.getYears();
 	}
 
+	public static int diferenciaMes(Fecha hoy, Fecha fNacimiento) {
+		Period periodo = fNacimiento.fecha.until(hoy.fecha);
+		return periodo.getMonths();
+	}
+
 	public void avanzarUnDia() {
 		fecha = fecha.plusDays(1);
 	}
@@ -82,6 +87,7 @@ public class Fecha implements Comparable<Fecha> {
 
 	@Override
 	public int compareTo(Fecha otraFecha) {
+
 		return fecha.compareTo(otraFecha.fecha);
 	}
 
@@ -94,13 +100,13 @@ public class Fecha implements Comparable<Fecha> {
 		if (getClass() != obj.getClass())
 			return false;
 		Fecha other = (Fecha) obj;
-		
-		if (fecha == null) 
+
+		if (fecha == null)
 			return other.fecha == null;
-		else 
+		else
 			return fecha.equals(other.fecha);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Fecha [fecha=" + fecha + "]";
@@ -110,10 +116,10 @@ public class Fecha implements Comparable<Fecha> {
 	public int hashCode() {
 		return fecha == null ? 0 : fecha.hashCode();
 	}
+
 	public static void main(String[] args) {
-		Fecha f = new Fecha();
-		System.out.println(Fecha.diferenciaAnios(f, new Fecha(9,05,2001)));
+		Fecha actual = new Fecha();
+		System.out.println(Fecha.diferenciaMes(new Fecha(26, 06, 2021), actual));
 	}
-	
 
 }
