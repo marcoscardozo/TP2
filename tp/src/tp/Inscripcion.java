@@ -9,8 +9,8 @@ import java.util.Set;
 public class Inscripcion {
 
 	private Map<Integer, Paciente> inscripcionesListaEspera; // se uso
-	private Map<Integer, ArrayList<Paciente>> ListaEsperaConPrioridad; // se uso
-	private Map<Fecha, Set<Paciente>> turnosConFecha; // guardaria la fecha y pacientes aun no se uso
+	protected Map<Integer, ArrayList<Paciente>> ListaEsperaConPrioridad; // se uso
+	protected Map<Fecha, ArrayList<Paciente>> turnosConFecha; // guardaria la fecha y pacientes aun no se uso
 	private Map<Integer, Paciente> pacientesVacunados; // aun no se uso
 
 	private Fecha fecha;
@@ -22,7 +22,8 @@ public class Inscripcion {
 		ListaEsperaConPrioridad.put(2, new ArrayList<Paciente>());
 		ListaEsperaConPrioridad.put(3, new ArrayList<Paciente>());
 		ListaEsperaConPrioridad.put(4, new ArrayList<Paciente>());
-		turnosConFecha = new HashMap<Fecha, Set<Paciente>>();
+		turnosConFecha = new HashMap<Fecha, ArrayList<Paciente>>();
+		turnosConFecha.put(new Fecha(), new ArrayList<Paciente>());
 		fecha = new Fecha();
 
 	}
@@ -33,8 +34,8 @@ public class Inscripcion {
 		if (inscripcionesListaEspera.containsKey(dni)) {
 			throw new RuntimeException("El paciente ya se encuentra inscripto en el sistema");
 		}
-		if (inscripcionesListaEspera.get(dni).vacunado)
-			throw new RuntimeException("El paciente ya fue vacunado");
+//		if (inscripcionesListaEspera.get(dni).vacunado)
+//			throw new RuntimeException("El paciente ya fue vacunado");
 		inscripcionesListaEspera.put(dni, new Paciente(dni, edad, enfermedad, personal));
 	}
 

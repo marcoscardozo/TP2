@@ -119,7 +119,8 @@ public class Fecha implements Comparable<Fecha> {
 
 	public static void main(String[] args) {
 		Fecha actual = new Fecha();
-		System.out.println(Fecha.diferenciaMes(new Fecha(26, 06, 2021), actual));
+		actual.avanzarUnDia();
+		System.out.println(actual);
 	}
 
 }

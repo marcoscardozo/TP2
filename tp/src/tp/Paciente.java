@@ -80,7 +80,7 @@ public class Paciente {
 	public String toString() {
 		return "Paciente [enfermedadPreexistente=" + enfermedadPreexistente + ", personalSalud=" + personalSalud
 				+ ", dni=" + dni + ", edad=" + edad + ", fechaTurno=" + fechaTurno + ", vacuna=" + vacuna
-				+ ", prioridad=" + prioridad + "]";
+				+ ", prioridad=" + prioridad + "]\n";
 	}
 
 //	public Date getFechaTurno() {
