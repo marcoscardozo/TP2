@@ -55,7 +55,7 @@ public class CentroVacunacion {
 		while (prioridad1.hasNext()) {
 			indice1++;
 			if (cantidadVacunadosPorDia >= this.capacidadVacunacionDiaria) {
-				turno.avanzarUnDia(); // mal, setea todas las fechas de nuevo, supongo por el aliasing.
+				fechaInicial.avanzarUnDia(); // mal, setea todas las fechas de nuevo, supongo por el aliasing.
 				this.capacidadVacunacionDiaria = 0;
 			}
 			if (!inscripciones.turnosConFecha.containsKey(turno))
